@@ -57,20 +57,13 @@ body{
   position:relative;
 }
 
+#nameBox{display:none;}
+
 .title{
   font-family:'Pacifico',cursive;
   color:#ff3f6c;
   font-size:30px;
   margin-bottom:18px;
-}
-
-input{
-  width:100%;
-  padding:12px;
-  border-radius:14px;
-  border:1px solid #ffd1dc;
-  font-size:15px;
-  text-align:center;
 }
 
 .main-btn{
@@ -83,8 +76,6 @@ input{
   font-size:16px;
   cursor:pointer;
 }
-
-#questionBox{ display:none; }
 
 .question{
   font-family:'Pacifico',cursive;
@@ -145,7 +136,7 @@ input{
   line-height:1.4;
 }
 
-/* ------------------ CREDIT (IMPROVED VISIBILITY) ------------------ */
+/* ------------------ CREDIT ------------------ */
 .credit{
   margin-top:6px;
   padding:6px 14px;
@@ -172,15 +163,10 @@ input{
 
 <div class="app">
 
-  <div class="card" id="nameBox">
-    <div class="title">Valentine App 💌</div>
-    <input id="nameInput" placeholder="Enter your crush name">
-    <button class="main-btn" onclick="start()">Continue</button>
-  </div>
-
+  <!-- Only question card now -->
   <div class="card" id="questionBox">
     <div class="question" id="questionText"></div>
-    <div class="softLine">I promise to make you smile every day 💗</div>
+    <div class="softLine">Please say yes yawrrr💗</div>
 
     <div class="buttons" id="btnArea">
       <button id="yesBtn" onclick="yesClicked()">Yes 💕</button>
@@ -188,9 +174,8 @@ input{
     </div>
   </div>
 
-  <!-- Visible credit -->
   <div class="credit">
-    Designed & Developed by Ashutosh Srivastava<br>All Rights Reserved IT Act, 2000 (Section 79, India)
+    Designed & developed by Ashutosh Srivastava
   </div>
 
 </div>
@@ -198,20 +183,16 @@ input{
 <script>
 const noBtn   = document.getElementById("noBtn");
 const btnArea = document.getElementById("btnArea");
+const questionText = document.getElementById("questionText");
+
+/* fixed name */
+const crushName = "Sudhakar";
+
+/* show question immediately */
+questionText.innerText =
+  `${crushName}, kya aap mere Valintine banoge?🥹💘`;
 
 let lastMove = 0;
-let crushName = "";
-
-function start(){
-  crushName = nameInput.value.trim();
-  if(!crushName) return alert("Enter a name 💗");
-
-  nameBox.style.display="none";
-  questionBox.style.display="block";
-
-  questionText.innerText =
-    `${crushName}, will you be my Valentine? 💘`;
-}
 
 /* smooth proximity based movement */
 document.addEventListener("mousemove", e => {
@@ -249,7 +230,6 @@ function yesClicked(){
   questionBox.innerHTML = `
     <div class="success">
       ${crushName} 💖<br>
-      I am so happy you said Yes!<br>
       Happy Valentine’s Day 💝
     </div>
   `;
